@@ -4,5 +4,17 @@
         "project": "./tsconfig.json",
         "ecmaVersion": 12,
         "sourceType": "module"
-    }
+    },
+    "overrides": [
+        {
+          "files": [
+            "**/*.spec.js",
+            "**/*.spec.jsx",
+            "**/*.spec.ts"
+          ],
+          "env": {
+            "jest": true
+          }
+        }
+    ]
 }
