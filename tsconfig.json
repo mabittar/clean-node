@@ -1,9 +1,17 @@
 {
-    "compilerOptions": {
-        "outDir": "./dist",
-        "module": "CommonJS",
-        "target": "ES2021",
-        "esModuleInterop": true,
-        "allowJs": true
-    }
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "module": "commonjs",
+    "target": "es5",
+    "removeComments": false,
+    "sourceMap": true,
+    "allowJs": true,
+    "typeRoots": ["./node_modules/@types", "./src/@types"],
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  },
+  "include": ["src/**/*"]
 }
