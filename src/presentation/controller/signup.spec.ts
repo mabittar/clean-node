@@ -1,9 +1,10 @@
-import { SignUpContoller } from './signup.controller';
+import { MissingParamError } from './errors/missing-param-error';
+import { SignUpController } from './signup.controller';
 
 describe('SignUp Controller', () => {
 
   test('Should return 400 if no nome is provided', () => {
-    const sut = new SignUpContoller()
+    const sut = new SignUpController()
     const httpRequest = {
       body: {
         email: 'test@tes.com'
@@ -11,11 +12,11 @@ describe('SignUp Controller', () => {
     }
     const httpResponse = sut.handle(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new Error('Missing param: name'))
+    expect(httpResponse.body).toEqual(new MissingParamError('name'))
   })
 
   test('Should return 400 if no email is provided', () => {
-    const sut = new SignUpContoller()
+    const sut = new SignUpController()
     const httpRequest = {
       body: {
         name: 'test'
@@ -23,6 +24,33 @@ describe('SignUp Controller', () => {
     }
     const httpResponse = sut.handle(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new Error('Missing param: email'))
+    expect(httpResponse.body).toEqual(new MissingParamError('email'))
+  })
+
+  test('Should return 400 if no password is provided', () => {
+    const sut = new SignUpController()
+    const httpRequest = {
+      body: {
+        name: 'test',
+        email: 'test@tes.com'
+      }
+    }
+    const httpResponse = sut.handle(httpRequest)
+    expect(httpResponse.statusCode).toBe(400)
+    expect(httpResponse.body).toEqual(new MissingParamError('password'))
+  })
+
+  test('Should return 400 if no passwordConfirmation is provided', () => {
+    const sut = new SignUpController()
+    const httpRequest = {
+      body: {
+        name: 'test',
+        email: 'test@tes.com',
+        password: 'superPass'
+      }
+    }
+    const httpResponse = sut.handle(httpRequest)
+    expect(httpResponse.statusCode).toBe(400)
+    expect(httpResponse.body).toEqual(new MissingParamError('passwordConfirmation'))
   })
 })
